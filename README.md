@@ -81,25 +81,28 @@ Un chatbot inteligente especializado para el gimnasio DreamGym, construido con t
 - Conversaciones siguientes: $0.00035
 
 ## 📁 Estructura del Proyecto
+
+```
 gym-assistant-bot/
+│
 ├── app/
-│ ├── app.py # Interfaz de usuario Streamlit
-│ ├── backend.py # Lógica de procesamiento
-│ ├── data_loader.py # Carga de datos del PDF
-│ ├── prompts.py # Templates de prompts
-│ └── vector_store.py # Gestión de embeddings
+│   ├── app.py           # Interfaz de usuario Streamlit
+│   ├── backend.py       # Lógica de procesamiento
+│   ├── data_loader.py   # Carga de datos del PDF
+│   ├── prompts.py       # Templates de prompts
+│   └── vector_store.py  # Gestión de embeddings
+│
 ├── data/
-│ └── Gym_dream.pdf # Datos del gimnasio
-├── config.yaml # Configuración
-├── requirements.txt # Dependencias
-└── README.md # Documentación
-
-
+│   └── Gym_dream.pdf    # Datos del gimnasio
+│
+├── config.yaml          # Configuración
+├── requirements.txt     # Dependencias
+└── README.md           # Documentación
+```
 
 ## 📝 Licencia
 
 Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE.md](LICENSE.md) para detalles
-
 
 ---
 ⌨️ con ❤️ por [Tu Nombre](https://github.com/tu-usuario)
