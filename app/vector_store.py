@@ -55,7 +55,7 @@ def initialize_vector_store(data):
 
 def load_vector_store():
     """
-    Carga el almacén vectorial persistido.
+    Carga el almacén vectorial para búsqueda semántica
     """
     try:
         embeddings = OpenAIEmbeddings(openai_api_key=config["openai_api_key"])
