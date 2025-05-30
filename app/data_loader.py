@@ -9,17 +9,17 @@ Principales funciones:
 - load_data(): Carga y procesa el PDF, dividiendo el contenido en secciones
 """
 
-# Importaciones necesarias para el procesamiento de PDFs y logging
+# Importaciones necesarias para el procesamiento de PDFs
 import pdfplumber  # Para extraer texto de PDFs
-import logging     # Para registro de eventos y errores
+# import logging     # Logging import will be removed
 import os         # Para operaciones del sistema de archivos
 
-# Configuración básica del sistema de logging
-logging.basicConfig(
-    level=logging.DEBUG,
-    format='%(asctime)s - %(levelname)s - %(message)s'
-)
-logger = logging.getLogger(__name__)
+# Configuración básica del sistema de logging - THIS BLOCK WILL BE REMOVED
+# logging.basicConfig(
+#     level=logging.DEBUG,
+#     format='%(asctime)s - %(levelname)s - %(message)s'
+# )
+# logger = logging.getLogger(__name__) # Logger initialization will be removed
 
 def load_data():
     """

@@ -1,6 +1,16 @@
 # .\gym-assistant-env\Scripts\activate
 
 import streamlit as st
+import logging # Added import for logging
+
+# Configure logging to show only INFO level messages and above for a cleaner terminal output
+# This helps in reducing the noise from DEBUG messages from various libraries.
+logging.basicConfig(level=logging.INFO)
+# You can also configure logging for specific noisy libraries if needed, for example:
+# logging.getLogger("chromadb").setLevel(logging.WARNING)
+# logging.getLogger("httpx").setLevel(logging.WARNING)
+# logging.getLogger("openai").setLevel(logging.WARNING)
+
 from backend import handle_query
 from data_loader import load_data
 from vector_store import initialize_vector_store
