@@ -91,9 +91,3 @@ docupy-bot/
 └── README.md            # Esta documentación
 ```
 
-## 📝 Licencia
-
-Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE.md](LICENSE.md) para detalles
-
----
-⌨️ con ❤️ por [Tu Nombre](https://github.com/tu-usuario)

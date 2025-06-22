@@ -61,45 +61,6 @@ with st.sidebar:
     st.text(f"Tokens: {st.session_state.total_tokens}")
     st.text(f"Coste (USD): ${st.session_state.total_cost_usd:.6f}")
 
-# Agregar CSS personalizado
-st.markdown("""
-    <style>
-    .chat-message {
-        padding: 1.5rem;
-        border-radius: 0.8rem;
-        margin-bottom: 1.5rem;
-        line-height: 1.8;
-        font-size: 16px;
-    }
-    .bot-message {
-        background-color: #2E2E2E;
-        color: #FFFFFF;
-    }
-    .user-message {
-        background-color: #1E1E1E;
-        color: #FFFFFF;
-    }
-    .message-content {
-        white-space: pre-line;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        letter-spacing: 0.5px;
-        margin-top: 0.5rem;
-    }
-    .message-content ul {
-        list-style-type: none;
-        padding-left: 0;
-    }
-    .message-content li {
-        margin-bottom: 0.5rem;
-    }
-    .emoji {
-        font-size: 1.2em;
-        margin-right: 0.5rem;
-        vertical-align: middle;
-    }
-    </style>
-""", unsafe_allow_html=True)
-
 st.title("DocuPy Bot 🐍")
 
 # Inicializar historial en la sesión
@@ -141,19 +102,7 @@ if user_input:
     # Forzar la re-ejecución para que la barra lateral se actualice inmediatamente
     st.rerun()
 
-# Mostrar historial del chat con mejor formato
+# Mostrar historial del chat con el método nativo de Streamlit
 for message in st.session_state.messages:
-    if message["role"] == "user":
-        st.markdown(f"""
-            <div class="chat-message user-message">
-                <b>Tú:</b>
-                <div class="message-content">{message['content']}</div>
-            </div>
-        """, unsafe_allow_html=True)
-    else:
-        st.markdown(f"""
-            <div class="chat-message bot-message">
-                <b>Bot:</b>
-                <div class="message-content">{message['content']}</div>
-            </div>
-        """, unsafe_allow_html=True)
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])

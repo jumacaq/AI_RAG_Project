@@ -38,12 +38,18 @@ def handle_query(query, messages):
         verbose=True
     )
     
-    # Formatear el historial
+    # Formatear el historial correctamente en pares (humano, ia)
     formatted_history = []
-    for msg in messages[1:]:
-        if isinstance(msg, dict) and msg["role"] == "user":
-            formatted_history.append((msg["content"], ""))
+    # Ignorar el mensaje de bienvenida y la última pregunta del usuario
+    chat_history_messages = messages[1:-1]
     
+    for i in range(0, len(chat_history_messages), 2):
+        if i + 1 < len(chat_history_messages):
+            user_msg = chat_history_messages[i]
+            bot_msg = chat_history_messages[i+1]
+            if user_msg['role'] == 'user' and bot_msg['role'] == 'bot':
+                formatted_history.append((user_msg['content'], bot_msg['content']))
+
     try:
         # Usar el callback para obtener las estadísticas
         with get_openai_callback() as cb:
