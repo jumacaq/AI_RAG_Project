@@ -1,5 +1,6 @@
 from langchain.chains import ConversationalRetrievalChain
 from langchain_openai import ChatOpenAI
+from langchain_community.callbacks import get_openai_callback
 from vector_store import load_vector_store
 from langchain.prompts import PromptTemplate
 import yaml
@@ -30,7 +31,7 @@ def handle_query(query, messages):
     chain = ConversationalRetrievalChain.from_llm(
         llm=llm,
         # RETRIEVAL: Configura la búsqueda de documentos relevantes
-        retriever=vector_store.as_retriever(search_kwargs={"k": 3}),
+        retriever=vector_store.as_retriever(search_kwargs={"k": 10}),
         # AUGMENTATION: Usa el prompt para combinar contexto y pregunta
         combine_docs_chain_kwargs={"prompt": prompt},
         return_source_documents=True,
@@ -44,12 +45,28 @@ def handle_query(query, messages):
             formatted_history.append((msg["content"], ""))
     
     try:
-        result = chain.invoke({
-            "question": query,
-            "chat_history": formatted_history
-        })
-        
-        return result["answer"]
+        # Usar el callback para obtener las estadísticas
+        with get_openai_callback() as cb:
+            result = chain.invoke({
+                "question": query,
+                "chat_history": formatted_history
+            })
+            
+            # Devolver un diccionario con la respuesta y las estadísticas
+            return {
+                "answer": result["answer"],
+                "total_tokens": cb.total_tokens,
+                "prompt_tokens": cb.prompt_tokens,
+                "completion_tokens": cb.completion_tokens,
+                "total_cost_usd": cb.total_cost
+            }
+
     except Exception as e:
-        return """¡Hola! Soy el asistente especializado de DreamGym. 
-Disculpa, tuve un problema técnico. ¿Podrías reformular tu pregunta?"""
+        # En caso de error, devolver un diccionario con valores por defecto
+        return {
+            "answer": "¡Hola! Soy DocuPy Bot. Disculpa, tuve un problema técnico. ¿Podrías reformular tu pregunta?",
+            "total_tokens": 0,
+            "prompt_tokens": 0,
+            "completion_tokens": 0,
+            "total_cost_usd": 0
+        }

@@ -24,6 +24,7 @@ with open(CONFIG_PATH, "r") as file:
 def initialize_vector_store(data):
     """
     Crea un almacén vectorial desde datos iniciales.
+    Ahora `data` es una lista de textos (chunks).
     """
     print("\n=== Inicializando Vector Store ===")
     
@@ -34,21 +35,11 @@ def initialize_vector_store(data):
     try:
         embeddings = OpenAIEmbeddings(openai_api_key=config["openai_api_key"])
         
-        # Crear chunks más pequeños para mejor búsqueda
-        texts = []
-        for item in data:
-            # Dividir el texto en párrafos
-            paragraphs = item['text'].split('\n\n')
-            for paragraph in paragraphs:
-                if paragraph.strip():
-                    texts.append(paragraph.strip())
+        # El 'data' que llega ahora es una lista de textos (chunks),
+        # por lo que se puede usar directamente.
+        texts = data
         
-        print("\n=== Contenido a indexar ===")
-        for i, text in enumerate(texts, 1):
-            print(f"\nChunk {i}:")
-            print("-" * 30)
-            print(text)
-            print("-" * 30)
+        print(f"\n=== {len(texts)} chunks de texto listos para ser indexados ===")
         
         # Ensure the persist directory exists
         os.makedirs(VECTOR_STORE_DIR, exist_ok=True)
@@ -59,7 +50,6 @@ def initialize_vector_store(data):
             persist_directory=VECTOR_STORE_DIR
         )
         
-        #vector_store.persist()
         print("\nVector Store creado y persistido correctamente en:", VECTOR_STORE_DIR)
         return vector_store
         

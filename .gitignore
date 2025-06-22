@@ -1,6 +1,6 @@
 # Ignorar entornos virtuales
-venv/
-gym-assistant-env/
+.venv/
+
 *.pyc
 __pycache__/
 vector_store/
