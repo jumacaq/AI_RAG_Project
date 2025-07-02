@@ -1,6 +1,6 @@
 # Ignorar entornos virtuales
 .venv/
-
+vector_store/
 *.pyc
 __pycache__/
 vector_store/
