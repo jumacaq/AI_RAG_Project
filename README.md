@@ -17,7 +17,7 @@ Este proyecto utiliza un pipeline de RAG (Retrieval Augmented Generation) con La
 
 -   **Frontend:** Streamlit
 -   **Backend y Orquestación:** Python, LangChain
--   **Modelo de Lenguaje (LLM):** OpenAI GPT-3.5-turbo (o superior)
+-   **Modelo de Lenguaje (LLM):** OpenAI gpt-4o-mini
 -   **Base de Datos de Vectores:** ChromaDB
 -   **Embeddings:** OpenAI Embeddings
 -   **Procesamiento de Documentos:** PDFPlumber
