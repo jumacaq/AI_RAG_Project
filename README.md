@@ -1,6 +1,7 @@
-# DocuPy Bot: Tu Asistente Experto en la Documentación de Python 🐍
+# Nutrilac Bot: Tu Asistente Experto en nutrición preconcepcional, durante el embarazo y la lactancia.
 
-Un chatbot inteligente que te permite "dialogar" con la documentación técnica de Python. En lugar de buscar manualmente, simplemente haz una pregunta y obtén respuestas precisas y contextualizadas, extraídas directamente de la fuente oficial.
+Un chatbot inteligente que te permite "dialogar" con un documento sobre educación nutricional en la etapa preconcepcional, embarazo y lactancia.
+En lugar de buscar manualmente, simplemente haz una pregunta y obtén respuestas precisas y contextualizadas sobre este tema, esta dirigido a padres primerizos o especialistas en nutrición que buscan mayor información de este tópico específico.
 
 Este proyecto utiliza un pipeline de RAG (Retrieval Augmented Generation) con LangChain y OpenAI para ofrecer una herramienta de Q&A potente sobre un corpus de documentos extenso.
 
@@ -48,7 +49,7 @@ Este proyecto utiliza un pipeline de RAG (Retrieval Augmented Generation) con La
 
 4.  **Configurar tu API Key de OpenAI**
     -   Renombra el archivo `config.example.yaml` a `config.yaml`.
-    -   Edita `config.yaml` y reemplaza `"tu-api-key-aqui"` con tu clave de API de OpenAI.
+    -   Edita `config.yaml` y reemplaza `"your_openai_api_key"` con tu clave de API de OpenAI.
 
 5.  **Añadir tu Documento**
     -   Coloca el archivo PDF que quieres que el bot analice dentro de la carpeta `data/`.
@@ -72,21 +73,23 @@ Este proyecto utiliza un pipeline de RAG (Retrieval Augmented Generation) con La
 ## 📁 Estructura del Proyecto
 
 ```
-docupy-bot/
+nutrilac-bot/
 │
 ├── app/
-│   ├── app.py           # Lógica del Frontend (Streamlit)
-│   ├── backend.py       # Lógica del Backend (LangChain RAG)
-│   ├── data_loader.py   # Carga y procesa el PDF
-│   ├── prompts.py       # Contiene el prompt del sistema para el bot
-│   └── vector_store.py  # Gestiona la creación y carga de la BD de vectores
+│   ├── app.py               # Lógica del Frontend (Streamlit)
+│   ├── backend.py           # Lógica del Backend (LangChain RAG)
+│   ├── new_data_loader.py   # Carga y procesa el PDF
+│   ├── new_prompts.py       # Contiene el prompt del sistema para el bot
+|   ├── test_backend.py      # Archivo para probar el funcionamiento del backend
+|   ├── test_vector_store.py # Archivo para probar el funcionamiento de la carga de archivos vectoriales en ChromaDB
+│   └── vector_store.py      # Gestiona la creación y carga de la BD de vectores
 │
 ├── data/
-│   └── library.pdf      # El documento fuente para el bot
+│   └── nutricion.pdf    # El documento fuente para el bot
 │
 ├── vector_store/        # Directorio donde se guarda la BD de vectores (creado automáticamente)
 │
-├── config.yaml          # Tu fichero de configuración con la API key
+├── config.example.yaml  # Tu fichero ejemplo de configuración con la API key
 ├── requirements.txt     # Dependencias del proyecto
 └── README.md            # Esta documentación
 ```
