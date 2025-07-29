@@ -15,3 +15,5 @@ config.yaml
 app/data_loader.py
 app/prompts.py
 data/library.pdf
+.gitattributes
+initialize_vector.py
