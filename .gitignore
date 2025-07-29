@@ -12,3 +12,6 @@ config.yaml
 # Otros archivos del sistema
 .DS_Store
 .vscode/
+app/data_loader.py
+app/prompts.py
+data/library.pdf

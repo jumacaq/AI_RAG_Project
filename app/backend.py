@@ -4,7 +4,7 @@ from langchain_community.callbacks import get_openai_callback
 from vector_store import load_vector_store
 from langchain.prompts import PromptTemplate
 import yaml
-from prompts import SYSTEM_TEMPLATE
+from new_prompts import SYSTEM_TEMPLATE
 
 # Cargar configuración desde config.yaml
 with open("config.yaml", "r") as file:
@@ -13,8 +13,8 @@ with open("config.yaml", "r") as file:
 def handle_query(query, messages):
     # 1. CONFIGURACIÓN DEL LLM
     llm = ChatOpenAI(
-        model="gpt-3.5-turbo",
-        temperature=0.7,
+        model="gpt-4o-mini",
+        temperature=0.5,
         openai_api_key=config["openai_api_key"]
     )
     
@@ -31,7 +31,7 @@ def handle_query(query, messages):
     chain = ConversationalRetrievalChain.from_llm(
         llm=llm,
         # RETRIEVAL: Configura la búsqueda de documentos relevantes
-        retriever=vector_store.as_retriever(search_kwargs={"k": 10}),
+        retriever=vector_store.as_retriever(search_kwargs={"k": 5}),
         # AUGMENTATION: Usa el prompt para combinar contexto y pregunta
         combine_docs_chain_kwargs={"prompt": prompt},
         return_source_documents=True,
@@ -70,7 +70,7 @@ def handle_query(query, messages):
     except Exception as e:
         # En caso de error, devolver un diccionario con valores por defecto
         return {
-            "answer": "¡Hola! Soy DocuPy Bot. Disculpa, tuve un problema técnico. ¿Podrías reformular tu pregunta?",
+            "answer": "¡Hola! Soy Nutrilac - Bot. Disculpa, tuve un problema técnico. ¿Podrías reformular tu pregunta?",
             "total_tokens": 0,
             "prompt_tokens": 0,
             "completion_tokens": 0,
