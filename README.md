@@ -53,7 +53,7 @@ Este proyecto utiliza un pipeline de RAG (Retrieval Augmented Generation) con La
 
 5.  **Añadir tu Documento**
     -   Coloca el archivo PDF que quieres que el bot analice dentro de la carpeta `data/`.
-    -   Asegúrate de que el archivo `app/data_loader.py` apunte al nombre de tu documento (actualmente está configurado para `library.pdf`).
+    -   Asegúrate de que el archivo `app/new_data_loader.py` apunte al nombre de tu documento (actualmente está configurado para `nutricion.pdf`).
 
 ## 🚀 Ejecución
 
