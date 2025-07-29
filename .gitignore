@@ -1,9 +1,9 @@
 # Ignorar entornos virtuales
 .venv/
-vector_store/
+#vector_store/
 *.pyc
 __pycache__/
-vector_store/
+
 
 # Ignorar archivos de configuración con claves API
 config.yaml
